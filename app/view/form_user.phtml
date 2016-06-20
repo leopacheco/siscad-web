@@ -1,0 +1,85 @@
+
+<?php
+$action = '';
+if(isset($user)){
+  $action = $url.'/usuario/editar/'.$user->getId();
+}else{ $action = $url.'/usuario/novo';}
+
+ ?>
+ <!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SISCAD-WEB</title>
+
+    <link rel="stylesheet" href="<?php echo $url ?>/public/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo $url ?>/public/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo $url ?>/public/css/styles.css">
+    <script src="public/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script>
+    function makeSecret(){
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for( var i=0; i < 14; i++ ){
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      var x = document.getElementById("secret");   // Get the element with id="demo"
+      x.value = text;
+    }
+    </script>
+  </head>
+  <body>
+    <div id="content">
+      <div class="page-header">
+        <h1>SISCAD-WEB <br><small><?php if(isset($user)){echo 'Editar';}else{ echo 'Novo';}?> usuário SISCAD-API</small></h1>
+      </div>
+      <h3><a href="<?php echo $url ?>/usuario"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">Voltar</a></h3>
+      <div id="form_user">
+        <form method="post" action="<?php echo $action ?>">
+          <input class="form-control" type="hidden" name="id" value="<?php if(isset($user)){echo $user->getId();}?>" />
+          <div class="input-group form-siscad">
+            <label>Nome de usuário
+              <input type="text" class="form-control" placeholder="usuário" aria-describedby="basic-addon1" name="nome" value="<?php if(isset($user)){echo $user->getNome();}?>">
+            </label>
+          </div>
+
+          <div class="input-group form-siscad">
+            <label>Descrição
+              <textarea name="descricao" class="form-control" aria-describedby="basic-addon2"><?php if(isset($user)){echo $user->getDescricao();}?></textarea>
+            </label>
+          </div>
+
+          <div class="input-group form-siscad">
+            <label>Secret
+              <input type="text" class="form-control" id="secret" placeholder="secret" aria-describedby="basic-addon3" readonly="true" name="secret" value="<?php if(isset($user)){echo $user->getSecret();}?>">
+              <span class="input-group-btn" id="basic-addon5"><button class="btn btn-default" type="button" onclick="makeSecret()">Gerar secret</button></span>
+            </label>
+          </div>
+
+          <div class="input-group form-siscad">
+            <label>Perfil
+              <select name="perfil_id" class="form-control" aria-describedby="basic-addon3">
+              <?php foreach ($perfis as $perfil) { ?>
+                <option value="<?php echo $perfil->getId() ?>" <?php if(isset($user)){if($perfil->getId()==$user->getPerfilId()){echo 'selected';}} ?> ><?php echo $perfil->getNome() ?></option>
+              <?php } ?>
+              </select>
+            </label>
+          </div>
+
+          <div class="input-group form-siscad">
+            <label>Ativo
+              <input type="checkbox" value="1" class="form-control" id="ativo" aria-describedby="basic-addon6" name="ativo" <?php if(isset($user)){if($user->getAtivo()){echo 'checked';}} ?>>
+            </label>
+          </div>
+
+          <div class="input-group form-siscad">
+            <input type="submit" class="btn btn-success" />
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

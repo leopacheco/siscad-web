@@ -1,0 +1,6 @@
+{
+    "require": {
+        "slim/slim": "~2.0",
+        "propel/propel1": "~1.6"
+    }
+}
