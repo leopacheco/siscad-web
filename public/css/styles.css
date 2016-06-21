@@ -13,3 +13,10 @@
   margin: auto;
   width: 400px;
 }
+
+#logout{
+  position: absolute;;
+  display: inline;;
+  right: 150px;
+  top:20px;
+}
