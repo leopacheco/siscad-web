@@ -15,7 +15,7 @@ $app = new \Slim\Slim(array(
     'debug' => false,
     'mode' => 'development'
 ));
-
+$app->response->headers->set('Content-Type', 'text/html;charset=utf-8');
 $app->config(array( 'templates.path' => 'app/view/', ));
 $app->add(new Middleware\Autenticacao);
 //routes

@@ -25,7 +25,6 @@ class Usuario extends BaseUsuario
   }
 
   public function setUsuario($params){
-    $user;
     if(empty($params['id'])){
       $user = new Usuario;
     }else{
@@ -45,6 +44,12 @@ class Usuario extends BaseUsuario
     if($user->validate()){
       $user->save();
       return true;
+    }else{
+      $errorMsg = '';
+      foreach ($user->getValidationFailures() as $failure) {
+        $errorMsg .= $failure->getMessage() . "<br>";
+      }
+      return $errorMsg;
     }
   }
 

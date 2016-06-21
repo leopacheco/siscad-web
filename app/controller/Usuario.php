@@ -14,8 +14,12 @@ class Usuario{
 
   public function setUsuario($params){
     $user = new \Model\Usuario;
-    $user->setUsuario($params);
-    return true;
+    $response = $user->setUsuario($params);
+    if($response === true){
+      return true;
+    }else{
+      return $response;
+    }
   }
 
 

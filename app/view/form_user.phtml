@@ -37,6 +37,10 @@ if(isset($user)){
       </div>
       <h3><a href="<?php echo $url ?>/usuario"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">Voltar</a></h3>
       <div id="form_user">
+        <?php if(isset($msg)){
+          echo "<p class='bg-warning'>{$msg}</p>";
+        }
+        ?>
         <form method="post" action="<?php echo $action ?>">
           <input class="form-control" type="hidden" name="id" value="<?php if(isset($user)){echo $user->getId();}?>" />
           <div class="input-group form-siscad">
