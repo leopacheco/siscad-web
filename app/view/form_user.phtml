@@ -44,7 +44,7 @@ if(isset($user)){
         <form method="post" action="<?php echo $action ?>">
           <input class="form-control" type="hidden" name="id" value="<?php if(isset($user)){echo $user->getId();}?>" />
           <div class="input-group form-siscad">
-            <label>Nome de usuário
+            <label>Nome de usuário*
               <input type="text" class="form-control" placeholder="usuário" aria-describedby="basic-addon1" name="nome" value="<?php if(isset($user)){echo $user->getNome();}?>">
             </label>
           </div>
@@ -56,7 +56,7 @@ if(isset($user)){
           </div>
 
           <div class="input-group form-siscad">
-            <label>Secret
+            <label>Secret*
               <input type="text" class="form-control" id="secret" placeholder="secret" aria-describedby="basic-addon3" readonly="true" name="secret" value="<?php if(isset($user)){echo $user->getSecret();}?>">
               <span class="input-group-btn" id="basic-addon5"><button class="btn btn-default" type="button" onclick="makeSecret()">Gerar secret</button></span>
             </label>

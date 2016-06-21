@@ -1,10 +1,10 @@
 <config>  
   <propel>
     <datasources default="siscad">
-	  <datasource id="siscad_autenticacao">
+	  <datasource id="siscad_api">
         <adapter>mysql</adapter>
         <connection>
-          <dsn>mysql:host=localhost;dbname=siscad_autenticacao</dsn>
+          <dsn>mysql:host=localhost;dbname=siscad_api</dsn>
           <user>root</user>
           <password></password>
         </connection>
